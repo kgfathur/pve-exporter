@@ -6,7 +6,12 @@ import requests
 import urllib3
 import json
 import time
-from requests.auth import HTTPBasicAuth
+from configparser import ConfigParser
+
+parser = ConfigParser()
+parser.read('config.conf')
+
+print(parser.get('pve_config', 'url'))
 
 def loadConfig():
     global PVE_HOST
@@ -51,7 +56,7 @@ auth_param = {'username': PVE_USER, 'password': PVE_PASS}
 url = '{}:{}{}'.format(PVE_HOST, PVE_PORT, endpoint)
 print('Trying to authenticate: {} with user [{}]'.format(url, PVE_USER))
 try:
-    response = requests.get(url, params = auth_param, verify=False)
+    # response = requests.get(url, params = auth_param, verify=False)
     # responCode = response.status_code
     print('test')
 
