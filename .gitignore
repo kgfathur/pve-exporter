@@ -1,1 +1,2 @@
-/conf.d/*.conf
+conf.d/*.conf
+conf.d/test
