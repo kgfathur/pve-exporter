@@ -7,6 +7,7 @@ import urllib3
 import json
 import time
 from configparser import ConfigParser
+from distutils.util import strtobool
 
 parser = ConfigParser()
 parser.read('conf.d/01-private.conf')
@@ -23,7 +24,7 @@ PVE_PORT = parser.get('pve_config', 'PVE_PORT')
 PVE_USER = parser.get('pve_config', 'PVE_USER')
 PVE_PASS = parser.get('pve_config', 'PVE_PASS')
 PVE_CACERT = parser.get('pve_config', 'PVE_CACERT')
-USE_VERIFYSSL = bool(parser.get('pve_config', 'USE_VERIFYSSL'))
+USE_VERIFYSSL = strtobool(parser.get('pve_config', 'USE_VERIFYSSL'))
 
 if USE_VERIFYSSL:
     cacert = PVE_CACERT
