@@ -22,17 +22,20 @@ PVE_HOST = parser.get('pve_config', 'PVE_HOST')
 PVE_PORT = parser.get('pve_config', 'PVE_PORT')
 PVE_USER = parser.get('pve_config', 'PVE_USER')
 PVE_PASS = parser.get('pve_config', 'PVE_PASS')
+PVE_CACERT = parser.get('pve_config', 'PVE_CACERT')
 
 def loadConfig():
     global PVE_HOST
     global PVE_PORT
     global PVE_USER
     global PVE_PASS
+    global PVE_CACERT
 
     DEFAULT_HOST = "https://localhost"
-    DEFAULT_PORT = 8006
+    DEFAULT_PORT = "8006"
     DEFAULT_USER = "root@pam"
     DEFAULT_PASS = "admin"
+    DEFAULT_CACERT = "./certs/pve-ssl.pem"
     
     if PVE_HOST is None:
         print('PVE_HOST not set, using default: {}'.format(DEFAULT_HOST))
@@ -46,6 +49,9 @@ def loadConfig():
     if PVE_PASS is None:
         print('PVE_PASS not set, using default: {}'.format(DEFAULT_PASS))
         PVE_PASS = DEFAULT_PASS
+    if PVE_CACERT is None:
+        print('PVE_CACERT not set, using default: {}'.format(DEFAULT_CACERT))
+        PVE_CACERT = DEFAULT_CACERT
 
 loadConfig()
 
