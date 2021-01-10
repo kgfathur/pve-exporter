@@ -9,7 +9,7 @@ import time
 from configparser import ConfigParser
 
 parser = ConfigParser()
-parser.read('config.conf')
+parser.read('conf.d/01-private.conf')
 
 print(parser.get('pve_config', 'PVE_HOST'))
 
