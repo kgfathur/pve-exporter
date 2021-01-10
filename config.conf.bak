@@ -1,9 +1,0 @@
-[pve_config]
-PVE_NODE = pve
-PVE_HOST = https://localhost
-PVE_PORT = 8006
-PVE_USER = root@pam
-PVE_PASS = admin
-PVE_REALM = pam
-PVE_CACERT = certs/pve-root-ca.pem
-VERIFY_SSL = True
