@@ -9,7 +9,7 @@ import time
 from configparser import ConfigParser
 from distutils.util import strtobool
 
-class ProxmoxApi:
+class ProxmoxAPI:
     def __init__(self, configFile = None, host = None, port = None, realm = None, username = None, password = None, verify_ssl = None, cacert = None, endpoint = None, workdir = None, debug = False):
         
         load_default_section = True
@@ -206,7 +206,7 @@ class ProxmoxApi:
     def post(self, endpoint = None, headers = None, params = None):
         pass
 
-pve = ProxmoxApi(configFile = 'conf.d/01-private.conf')
+pve = ProxmoxAPI(configFile = 'conf.d/01-private.conf')
 pve.login()
 endpoint = '/api2/json/nodes/pve'
 response = pve.get(endpoint = endpoint, debug = True)
