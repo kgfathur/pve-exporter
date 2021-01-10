@@ -11,7 +11,17 @@ from configparser import ConfigParser
 parser = ConfigParser()
 parser.read('config.conf')
 
-print(parser.get('pve_config', 'url'))
+print(parser.get('pve_config', 'PVE_HOST'))
+
+# PVE_HOST = os.getenv('PVE_HOST')
+# PVE_PORT = os.getenv('PVE_PORT')
+# PVE_USER = os.getenv('PVE_USERNAME')
+# PVE_PASS = os.getenv('PVE_PASSWORD')
+
+PVE_HOST = parser.get('pve_config', 'PVE_HOST')
+PVE_PORT = parser.get('pve_config', 'PVE_PORT')
+PVE_USER = parser.get('pve_config', 'PVE_USER')
+PVE_PASS = parser.get('pve_config', 'PVE_PASS')
 
 def loadConfig():
     global PVE_HOST
@@ -19,15 +29,10 @@ def loadConfig():
     global PVE_USER
     global PVE_PASS
 
-    # DEFAULT_HOST = "https://localhost"
-    # DEFAULT_PORT = "8006"
-    # DEFAULT_USER = "root"
-    # DEFAULT_PASS = "admin"
-
-    DEFAULT_HOST = "https://192.168.1.100"
-    DEFAULT_PORT = "8006"
+    DEFAULT_HOST = "https://localhost"
+    DEFAULT_PORT = 8006
     DEFAULT_USER = "root@pam"
-    DEFAULT_PASS = "root"
+    DEFAULT_PASS = "admin"
     
     if PVE_HOST is None:
         print('PVE_HOST not set, using default: {}'.format(DEFAULT_HOST))
@@ -41,11 +46,6 @@ def loadConfig():
     if PVE_PASS is None:
         print('PVE_PASS not set, using default: {}'.format(DEFAULT_PASS))
         PVE_PASS = DEFAULT_PASS
-    
-PVE_HOST = os.getenv('PVE_HOST')
-PVE_PORT = os.getenv('PVE_PORT')
-PVE_USER = os.getenv('PVE_USERNAME')
-PVE_PASS = os.getenv('PVE_PASSWORD')
 
 loadConfig()
 
@@ -56,8 +56,8 @@ auth_param = {'username': PVE_USER, 'password': PVE_PASS}
 url = '{}:{}{}'.format(PVE_HOST, PVE_PORT, endpoint)
 print('Trying to authenticate: {} with user [{}]'.format(url, PVE_USER))
 try:
-    # response = requests.get(url, params = auth_param, verify=False)
-    # responCode = response.status_code
+    response = requests.get(url, params = auth_param, verify=False)
+    responCode = response.status_code
     print('test')
 
 except Exception as e:
