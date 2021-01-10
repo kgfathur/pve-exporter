@@ -23,6 +23,12 @@ PVE_PORT = parser.get('pve_config', 'PVE_PORT')
 PVE_USER = parser.get('pve_config', 'PVE_USER')
 PVE_PASS = parser.get('pve_config', 'PVE_PASS')
 PVE_CACERT = parser.get('pve_config', 'PVE_CACERT')
+USE_VERIFYSSL = True
+
+if USE_VERIFYSSL:
+    cacert = PVE_CACERT
+else:
+    cacert = False
 
 def loadConfig():
     global PVE_HOST
@@ -62,7 +68,7 @@ auth_param = {'username': PVE_USER, 'password': PVE_PASS}
 url = '{}:{}{}'.format(PVE_HOST, PVE_PORT, endpoint)
 print('Trying to authenticate: {} with user [{}]'.format(url, PVE_USER))
 try:
-    response = requests.get(url, params = auth_param, verify=False)
+    response = requests.get(url, params = auth_param, verify=cacert)
     responCode = response.status_code
     print('test')
 
