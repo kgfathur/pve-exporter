@@ -1,4 +1,4 @@
 conf.d/*.conf
 conf.d/test
 certs/*.pem
-.vscode/*
+.vscode
